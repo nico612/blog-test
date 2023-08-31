@@ -49,7 +49,7 @@
 │   │   ├── controller # controller 层代码
 │   │   │   └── v1 # API 接口版本
 │   │   │       ├── post # 博客相关代码实现
-│   │   │       │   ├── construct.go # 创建博客
+│   │   │       │   ├── construct.md.go # 创建博客
 │   │   │       │   ├── delete_collection.go #批量删除博客
 │   │   │       │   ├── delete.go # 删除博客
 │   │   │       │   ├── get.go # 获取博客详情
@@ -58,7 +58,7 @@
 │   │   │       │   └── update.go # 更新博客
 │   │   │       └── user
 │   │   │           ├── change_password.go # 修改用户密码
-│   │   │           ├── construct.go #创建用户
+│   │   │           ├── construct.md.go #创建用户
 │   │   │           ├── delete.go # 删除用户
 │   │   │           ├── get.go # 获取用户详情
 │   │   │           ├── list.go # 获取用户列表
