@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/nico612/blog-test/internal/core"
 	"github.com/nico612/blog-test/internal/pkg/log"
 	"github.com/nico612/blog-test/internal/pkg/middleware"
 	"github.com/nico612/blog-test/pkg/version/verflag"
@@ -101,7 +102,8 @@ func run() error {
 	// 注册/healthz handler
 	g.GET("/healthz", func(c *gin.Context) {
 		log.C(c).Infow("Healthz function called")
-		c.JSON(http.StatusOK, gin.H{"status": "ok"})
+		//c.JSON(http.StatusOK, gin.H{"status": "ok"})
+		core.WriteResponse(c, nil, map[string]string{"status": "ok"})
 	})
 
 	// 创建HTTP Server
