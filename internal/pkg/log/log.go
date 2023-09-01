@@ -2,6 +2,8 @@
 package log
 
 import (
+	"context"
+	"github.com/nico612/blog-test/internal/pkg/know"
 	"sync"
 	"time"
 
@@ -164,4 +166,27 @@ func Fatalw(msg string, keysAndValues ...interface{}) {
 
 func (l *zapLogger) Fatalw(msg string, keysAndValues ...interface{}) {
 	l.z.Sugar().Fatalw(msg, keysAndValues...)
+}
+
+// 在日志中打印X-Request-ID, 请求标识
+
+// C 解析传入的 context，尝试提取关注的键值，并添加到 zap.Logger 结构化日志中.
+func C(ctx context.Context) *zapLogger {
+	return std.C(ctx)
+}
+
+func (l *zapLogger) C(ctx context.Context) *zapLogger {
+	lc := l.clone()
+
+	if requestID := ctx.Value(know.XRequestIDKey); requestID != nil {
+		// 调用 *zap.Logger 的 With 方法，将 X-Request-ID 添加到日志输出中
+		lc.z = lc.z.With(zap.Any(know.XRequestIDKey, requestID))
+	}
+	return lc
+}
+
+// 因为 log 包被多个请求并发调用，为了防止 X-Request-ID 污染，针对每一个请求，我们都深拷贝一个 *zapLogger 对象，然后再添加 X-Request-ID。
+func (l *zapLogger) clone() *zapLogger {
+	lc := *l
+	return &lc
 }

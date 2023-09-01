@@ -60,7 +60,7 @@ all: format build
 build: tidy # 编译源码，依赖 tidy 目标自动添加/移除依赖包.
 #	@go build -v -o $(OUTPUT_DIR)/miniblog $(ROOT_DIR)/cmd/miniblog/main.go
 #   编译时通过 -ldflags 注入版本信息
-	@go build -v -ldflags "$(GO_LDFLAGS)" -o $(OUTPUT_DIR/miniblog $(ROOT_DIR)/cmd/miniblog/main.go)
+	@go build -v -ldflags "$(GO_LDFLAGS)" -o $(OUTPUT_DIR)/miniblog $(ROOT_DIR)/cmd/miniblog/main.go
 
 .PHONY: format
 format: # 格式化 Go 源码.

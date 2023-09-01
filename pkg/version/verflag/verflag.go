@@ -1,11 +1,14 @@
+// Package verflag defines utility functions to handle command line flags
+// related to version of IAM.
 package verflag
 
 import (
 	"fmt"
 	"github.com/nico612/blog-test/pkg/version"
-	"github.com/spf13/pflag"
 	"os"
 	"strconv"
+
+	"github.com/spf13/pflag"
 )
 
 type versionValue int
